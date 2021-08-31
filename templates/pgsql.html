@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8"/>
     <title>pgsql 조회 페이지</title>
+    <script type="text/javascript">
+        $(document.ready(function() {
+
+            $('.Size).width($(window).width());
+            $('.Size).height($(window).height());
+
+            $(window).resize(function() {
+                $('.Size).width($(window).width());
+                $('.Size).height($(window).height());
+            });
+        });
+    </script>
 
     <style>
       div.row {
         width: 100%;
-        height: auto;
+        height: 100%;
+        position: relative;
         border: 1px solid #003458;
       }
       div.left {
         width: 50%;
-        height: auto;
+        height: 100%;
+        position: relative;
         float: left;
         box-sizing: border-box;
         border: 1px solid black;
       }
       div.left1 {
         width: 100%;
-        height: auto;
+        height: 10%;
+        position: relative;
         box-sizing: border-box;
       }
       div.left2 {
         width: 100%;
-        height: auto;
+        height: 35%;
+        position: relative;
         box-sizing: border-box;
+        overflow: auto;
       }
       div.left3 {
         width: 100%;
-        height: auto;
+        height: 55%;
+        position: relative;
         box-sizing: border-box;
+        overflow: auto;
       }
       div.right {
         width: 50%;
-        height: auto;
+        height: 100%;
+        position: relative;
         float: right;
         box-sizing: border-box;
         background: #ece6cc;
@@ -49,10 +69,12 @@
 <div class="row">
     <div class="left">
         <div class="left1">
-            <h2>조회 조건</h2>
+            <h4>조회 조건</h4>
             <form action="/" method="POST">
                 <label for="tran_id">Tran_ID:</label>
                 <input type="text" name="tran_id"/>
+                <label for="if_id">IF_ID:</label>
+                <input type="text" name="if_id"/>
                 <input type="submit" value="search"/>
             </form>
         </div>
