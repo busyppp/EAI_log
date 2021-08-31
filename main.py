@@ -9,11 +9,13 @@ def eai_log():
     if request.method == 'POST':
         tran_id = request.form['tran_id']
         if_id = request.form['if_id']
+        startdate = request.form['startdate']
+        enddate = request.form['enddate']
         con = psycopg2.connect(host='localhost', dbname='postgres', user='postgres', password='1111', port='5432')
 
         cur1 = con.cursor()
         cur1.execute(f"select * from public.eai_trans_log where tran_id like ('%{tran_id}%') and if_id like ('%{if_id}%') order by proc_time desc")
-
+        print(startdate, enddate)
         log_data_list = cur1.fetchall()
 
         cur2 = con.cursor()
