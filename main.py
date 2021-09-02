@@ -1,5 +1,6 @@
-from os.path import exists
 from flask import Flask, render_template, request
+#pip install flask, psycopg2
+#윈도우에서는 C:\Users\ThinkPad\PycharmProjects\EAI_log\venv\Scripts 에서 pip
 import psycopg2
 
 app = Flask(__name__)
@@ -14,12 +15,13 @@ def eai_log():
         con = psycopg2.connect(host='localhost', dbname='postgres', user='postgres', password='1111', port='5432')
 
         cur1 = con.cursor()
-        cur1.execute(f"select * from public.eai_trans_log where tran_id like ('%{tran_id}%') and if_id like ('%{if_id}%') order by proc_time desc")
-        print(startdate, enddate)
+        cur1.execute(f"select * from public.eai_trans_log where tran_id like ('%{tran_id}%') and if_id like ('%{if_id}%') and proc_date >= ('{startdate}') and proc_date <= ('{enddate}') order by proc_time desc")
+        #cur1.execute(f"select * from public.eai_trans_log where tran_id like ('%{tran_id}%') and if_id like ('%{if_id}%') order by proc_time desc")
         log_data_list = cur1.fetchall()
 
         cur2 = con.cursor()
-        cur2.execute(f"select * from public.eai_trans_mon where tran_id like ('%{tran_id}%') and if_id like ('%{if_id}%') order by proc_time desc")
+        cur2.execute(f"select * from public.eai_trans_mon where tran_id like ('%{tran_id}%') and if_id like ('%{if_id}%') and proc_date >= ('{startdate}') and proc_date <= ('{enddate}') order by proc_time desc")
+        #cur2.execute(f"select * from public.eai_trans_mon where tran_id like ('%{tran_id}%') and if_id like ('%{if_id}%') order by proc_time desc")
 
         mon_data_list = cur2.fetchall()
 
