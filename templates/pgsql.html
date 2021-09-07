@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
     <title>pgsql 조회 페이지</title>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -23,31 +24,26 @@
         onSelect: function( selectedDate ) {
             var option = this.id == "startdate" ? "minDate" : "maxDate",
             instance = $( this ).data( "datepicker" ),
-            date = $.datepicker.parseDate(
-                instance.settings.dateFormat ||
-                $.datepicker._defaults.dateFormat,
-                selectedDate, instance.settings );
+            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings );
             dates.not( this ).datepicker( "option", option, date );
         }
         });
 
         //초기값을 오늘 날짜로 설정
-    $('#startdate').datepicker('setDate', '-2D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-    $('#enddate').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    $('#startdate').datepicker('setDate', '-2D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, +1M:한달후, +1Y:일년후)
+    $('#enddate').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, +1M:한달후, +1Y:일년후)
     });
     </script>
 
     <style>
       div.row {
         width: 100%;
-        height: 100%;
-        position: relative;
+        height: 70%;
         border: 1px solid #003458;
       }
       div.left {
         width: 50%;
         height: 100%;
-        position: relative;
         float: left;
         box-sizing: border-box;
         border: 1px solid black;
@@ -55,31 +51,29 @@
       div.left1 {
         width: 100%;
         height: 10%;
-        position: relative;
         box-sizing: border-box;
       }
       div.left2 {
         width: 100%;
         height: 35%;
-        position: relative;
         box-sizing: border-box;
         overflow: auto;
       }
       div.left3 {
         width: 100%;
         height: 55%;
-        position: relative;
         box-sizing: border-box;
         overflow: auto;
       }
       div.right {
         width: 50%;
         height: 100%;
-        position: relative;
         float: right;
         box-sizing: border-box;
         background: #ece6cc;
         border: 1px solid black;
+        overflow: auto;
+        text-align: left;
       }
 
     </style>
@@ -107,7 +101,7 @@
         <br>
         <div class="left2">
             mon table 조회
-            <table class ="table table-hover table-striprd text-center" style="border:1px solid;">
+            <table class ="table table-hover table-striprd text-left" style="border:1px solid;">
                 <thead>
                 <tr>
                     <th>Tran_ID</th>
@@ -133,7 +127,7 @@
         <br>
         <div class="left3">
             log table 조회
-            <table class ="table table-hover table-striprd text-center" style="border:1px solid;">
+            <table class ="table table-hover table-striprd text-left" style="border:1px solid;">
                 <thead>
                 <tr>
                     <th>Tran_ID</th>
@@ -159,6 +153,28 @@
     </div>
     <div class="right">
         nosql 조회 영역
+        <table class ="table table-hover table-striprd text-left" style="border:1px solid ">
+            <thead>
+            <tr>
+                <th>Tran_ID</th>
+                <th>Step</th>
+                <th>Datas</th>
+                <th>Error_Msg</th>
+                <th>Error_Trace</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in nosql_data_list %}
+            <tr>
+                <td>{{ i.tran_id }}</td>
+                <td>{{ i.step }}</td>
+                <td>{{ i.datas }}</td>
+                <td>{{ i.error_msg }}</td>
+                <td>{{ i.error_trace }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>

@@ -1,0 +1,17 @@
+#datepicker 참조
+https://zetawiki.com/wiki/JQuery_UI_%EA%B8%B0%EA%B0%84_%EC%84%A0%ED%83%9D_(datepicker)
+//초기값 참조
+https://cloud0477.tistory.com/124 
+
+#기본 틀, db 연동 참조
+https://cha4ser.tistory.com/entry/Web-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EB%A7%8C%EB%93%A4%EA%B8%B002Python-Flask-Mysql-%EC%97%B0%EB%8F%99?category=913614
+
+#MONGODB 설치
+https://www.mongodb.com/try/download/community
+//설치 후 환경변수 추가
+
+C:\Program Files\MongoDB\Server\5.0\bin
+//dbeaver community 버전에서는 mongodb가 지원이 안되어서 따로 mongodb GUI 툴 설치 체크 (MongoDB Compass)
+
+mongod로 실행하면 C:\data\db 가 없어서 서버 구동이 불가능
+-> 경로를 생성하거나, mongod --dbpath [경로]를 주어서 해당 경로 밑에 db가 생성되게 실행
